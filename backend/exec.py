@@ -25,4 +25,4 @@ def get_tts_response(llm_response):
     response_format="wav",
     input=llm_response,
     )
-    response.body
+    return response.read()
