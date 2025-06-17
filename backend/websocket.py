@@ -84,11 +84,11 @@ async def process_audio_message(client_id: str, audio_bytes):
 
         print("transcription[[[[[[[]]]]]]]", audio_transcription)
 
-        # llm_response = get_llm_response(transcription=audio_transcription)
+        llm_response = get_llm_response(transcription=audio_transcription)
 
-        # audio_response = get_tts_response(llm_response=llm_response)
+        audio_response = get_tts_response(llm_response=llm_response)
         
-        # return audio_response
+        return audio_response
     except Exception as e:
         print("error_transcription------>",e)
         await send_message(

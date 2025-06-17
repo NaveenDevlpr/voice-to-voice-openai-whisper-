@@ -55,18 +55,19 @@ async def handle_websocket(websocket: WebSocket, client_id: str):
                 silence_frames += 1
                 
                 if len(audio_buffer) > 0 and silence_frames >= max_silence_frames:
-                    print("INNNNNNNNN")
+    
                     audio_response=await process_audio_message(client_id=client_id, audio_bytes=bytes(audio_buffer))
-                #     if audio_response:
-                #         await websocket.send_bytes(audio_response)
+                    if audio_response:
+                        print("yes_audio_response-=-->",type(audio_response))
+                        await websocket.send_bytes(audio_response)
                     
                 
-                #     audio_buffer = bytearray()
-                #     silence_frames=0
-                #     await send_json_message(data={"type": "vad", "status": "inactive"},client_id=client_id)
-                #     speaking=False
-                # elif len(audio_buffer) > 0:
-                #     audio_buffer.extend(data)
+                    audio_buffer = bytearray()
+                    silence_frames=0
+                    await send_json_message(data={"type": "vad", "status": "inactive"},client_id=client_id)
+                    speaking=False
+                elif len(audio_buffer) > 0:
+                    audio_buffer.extend(data)
             # message = await websocket.receive_text()
            
             
